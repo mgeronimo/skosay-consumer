@@ -1,1 +1,1 @@
-# skosay-consumer
+# skosay

@@ -60,6 +60,7 @@
 
     <!-- ionic/angularjs js -->
     <script src="js/ionic/ionic.bundle.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 
     <!-- cordova script (this will be a 404 during development) 
     <script src="cordova.js"></script>-->
@@ -75,8 +76,8 @@
                 <ion-content>
                     <div class="content">
                         <div class="container">
-                            <form method="POST" action="login2" id="ajaxForm">
-                                <p align="center" style="margin-top:2em;">
+                            <form method="POST" id="ajaxForm">
+                                <p align="center" style="margin-top:15%;">
                                     <img src="img/skopic.png" style="width:230px;">
                                 </p>
                                 <div id="errorMsg" style="background-color:#00b9f2"></div>
@@ -93,7 +94,7 @@
                             </form>
 
                             <div class="list list-inset" style="margin-top: -1em; background-color:#00b9f2">
-                                <input disabled="true" id="submitButton" class="button button-block button-energized" type="submit" onclick="loadTweets()" value="Sign in">
+                                <input disabled="true" id="submitButton" class="button button-block button-energized" type="submit" onclick="submitForm()" value="Sign in">
                                 <button id="falseButton" class="button button-block button-energized" disabled="" style="display: none;">Signing in. Please wait <span class="ion-refreshing"></span></button>
                                 <center><a class="text-link" href="/confirmForgot">Forgot Password?</a></center>
                             </div>
@@ -122,6 +123,11 @@
     </ion-pane>
 
     <script>
+        $(document).ready(function(){
+            $.support.cors = true;
+            $.mobile.allowCrossDomainPages = true;
+        });
+
         window.onload = function()
         {
             $('#password').val('');
@@ -134,20 +140,28 @@
             document.getElementById('submitButton').style.display = 'none';
             document.getElementById('falseButton').style.display = '';
 
-            var url = $('#ajaxForm').attr('action');
-            $.ajax({
-                type : 'POST',
-                url : url,
-                data : $('#ajaxForm').serialize(),
-                success : function(userData)
-                {
-                    $('#testHidden').replaceWith(userData['hidden']);
-                    checkLogin();
-                    $('#errorMsg').empty().append(userData['msg']).show();
+            var email = $("input#email").val();
+            var password = $("input#password").val();
 
-                    setTimeout(function(){ $('#errorMsg').empty(); },4000);
+            //set up the http request
+            $.ajax({
+              url:'http://app.skosay.com/oauth/access_token',
+              type: 'POST',
+              dataType: 'json',
+              data:'{"username": "' + email + '", "password" : "' + password + '"}',
+              success:function(){
+                 //set the token in localstorage
+                 alert('Logged in!'); 
+              },
+              statusCode:{
+                    401: function(){
+                        alert('Request Failed');
+                    }
+              },
+              error: function(error_description){
+                    alert('Request Failed' + error_description);
                 }
-            })
+           });
         }
 
         function checkLogin()

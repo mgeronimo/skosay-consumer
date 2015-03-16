@@ -145,13 +145,17 @@
 
             //set up the http request
             $.ajax({
-              url:'http://app.skosay.com/oauth/access_token',
+              url:'http://devapp.skosay.com/api/v1/login',
               type: 'POST',
               dataType: 'json',
-              data:'{"username": "' + email + '", "password" : "' + password + '"}',
+              data:({
+                    email : $('#email').val(),
+                    password: $('#password').val()
+                }),
               success:function(){
                  //set the token in localstorage
-                 alert('Logged in!'); 
+                 //alert('Logged in!'); 
+                 window.location.href = "spec.html"
               },
               statusCode:{
                     401: function(){

@@ -12,6 +12,8 @@
     <link href="css/ionic.app.css" rel="stylesheet">
     -->
 
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
     <!-- ionic/angularjs js -->
     <script src="js/ionic/ionic.bundle.js"></script>
 
@@ -29,13 +31,13 @@
                 <ion-content>
                     <div class="content">
                         <div class="container">
-                            <form id="signUpForm" method="POST" action="register_action">
+                            <form id="signUpForm" method="POST">
                                 <input type="hidden" value="" id="name" name="name">
                                 <input type="hidden" value="" id="email" name="email">
                                 <input type="hidden" value="" id="password" name="password">
                                 <input type="hidden" value="" id="confirm-password" name="confirm-password">
                             </form>
-                            <form method="POST" action="login2" id="ajaxForm">
+                            <form method="POST" id="ajaxForm">
                                 <p align="center" style="margin-top:15%;">
                                     <img src="img/skopic.png" style="width:230px;"><br/>
                                     <span style="color: white; display: block; margin-top: 10px;">
@@ -89,57 +91,32 @@
 
         function submitForm()
         {
-            document.getElementById('submitButton').style.display = 'none';
-            document.getElementById('falseButton').style.display = '';
-            mixpanel.track("New user signed up");
+            //document.getElementById('submitButton').style.display = 'none';
+            //document.getElementById('falseButton').style.display = '';
+            //mixpanel.track("New user signed up");
             
             var finalForm = $('#signUpForm');
-            var url = finalForm.attr('action');
+            var url = 'http://devapp.skosay.com/api/v1/register';
             $.ajax({
                 type : 'POST',
                 url : url,
-                data : finalForm.serialize(),
-                success : function(userData)
+                data : ({
+                    email : $('#email').val(),
+                    password: $('#password').val(),
+                    name : $('#name').val(),
+                    //confirm-password: $('#confirm-password').val()
+                }),
+                success : function()
                 {
-                    $('#errorMsg').empty().append(userData['msg']);
-                    if(userData['status'] == 'false')
-                    {
-                        document.getElementById('submitButton').style.display = '';
-                        document.getElementById('falseButton').style.display = 'none';
-                        validateInput();
-                    }
-                    else
-                    {
-                        document.getElementById('submitButton').style.display = '';
-                        document.getElementById('falseButton').style.display = 'none';
-                        validateInput();
-                        setTimeout(function(){$('#redirect').submit();}, 5000);
-                    }
-                    window.location.href="#errorMsg";
-                    clearDiv();
-                }
+                    alert('Registered!');
+                },
+                statusCode:{
+                        401: function(){
+                            alert('Request Failed');
+                        }
+                  },
             })
         }
-
-        function checkLogin()
-        {
-            if(document.getElementById('testHidden').value == 'true')
-            {
-                document.getElementById('redirectForm').submit();
-            }
-            else
-            {
-                document.getElementById('submitButton').style.display = '';
-                document.getElementById('falseButton').style.display = 'none';
-            }
-        }
-
-         $(document).keypress(function(e) {
-            if(e.which == 13) {
-                if(document.getElementById('email').value.length != 0 || document.getElementById('password').value.length != 0)
-                    submitForm();
-            }
-        });
 
         function validateInput()
         {

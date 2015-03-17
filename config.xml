@@ -58,6 +58,7 @@
         <splash src="res/screen/android/splash-mdpi.jpg" density="port-mdpi"/>
         <splash src="res/screen/android/splash-xhdpi.jpg" density="port-xhdpi"/>
     </platform>
+    <preference name="SplashScreenDelay" value="5000" />
     <icon gap:platform="blackberry" src="www/res/icon/blackberry/icon-80.png" />
     <icon gap:platform="blackberry" gap:state="hover" src="www/res/icon/blackberry/icon-80.png" />
     <icon gap:platform="ios" height="57" src="www/res/icon/ios/icon-57.png" width="57" />

@@ -42,10 +42,17 @@
     <gap:plugin name="org.apache.cordova.splashscreen" />
     <gap:plugin name="org.apache.cordova.vibration" />
     <icon src="icon.png" />
-    <icon gap:platform="android" gap:qualifier="ldpi" src="www/res/icon/android/icon-36-ldpi.png" />
+    <!--<icon gap:platform="android" gap:qualifier="ldpi" src="www/res/icon/android/icon-36-ldpi.png" />
     <icon gap:platform="android" gap:qualifier="mdpi" src="www/res/icon/android/icon-48-mdpi.png" />
     <icon gap:platform="android" gap:qualifier="hdpi" src="www/res/icon/android/icon-72-hdpi.png" />
-    <icon gap:platform="android" gap:qualifier="xhdpi" src="www/res/icon/android/icon-96-xhdpi.png" />
+    <icon gap:platform="android" gap:qualifier="xhdpi" src="www/res/icon/android/icon-96-xhdpi.png" />-->
+    <platform name="android">
+              <icon src="res/icon/android/icon-ldpi.png" density="ldpi" />
+              <icon src="res/icon/android/icon-mdpi.png" density="mdpi" />
+              <icon src="res/icon/android/icon-hdpi.png" density="hdpi" />
+              <icon src="res/icon/android/icon-xhdpi.png" density="xhdpi" />
+              <icon src="res/icon/android/icon-xxhdpi.png" density="xxhdpi" />
+     </platform>
     <icon gap:platform="blackberry" src="www/res/icon/blackberry/icon-80.png" />
     <icon gap:platform="blackberry" gap:state="hover" src="www/res/icon/blackberry/icon-80.png" />
     <icon gap:platform="ios" height="57" src="www/res/icon/ios/icon-57.png" width="57" />
@@ -66,5 +73,14 @@
     <gap:splash gap:platform="ios" height="1024" src="www/res/screen/ios/screen-ipad-portrait.png" width="768" />
     <gap:splash gap:platform="ios" height="768" src="www/res/screen/ios/screen-ipad-landscape.png" width="1024" />
     <gap:splash gap:platform="winphone" src="www/res/screen/windows-phone/screen-portrait.jpg" />
+
+
+    <platform name="android">
+        <!-- you can use any density that exists in the Android project -->
+        <splash src="res/screen/android/splash-hdpi.jpg" density="port-hdpi"/>
+        <splash src="res/screen/android/splash-ldpi.jpg" density="port-ldpi"/>
+        <splash src="res/screen/android/splash-mdpi.jpg" density="port-mdpi"/>
+        <splash src="res/screen/android/splash-xhdpi.jpg" density="port-xhdpi"/>
+    </platform>
     <access origin="*" />
 </widget>

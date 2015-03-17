@@ -159,12 +159,12 @@
               },
               statusCode:{
                     401: function(){
-                        alert('Request Failed');
+                        alert('Request failed');
+                    },
+                    500: function(){
+                        alert('Login failed. Please check your login credentials.');
                     }
-              },
-              error: function(error_description){
-                    alert('Request Failed' + error_description);
-                }
+              }
            });
         }
 

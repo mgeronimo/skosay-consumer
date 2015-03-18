@@ -52,25 +52,27 @@
                                 </div>
                                 <div class="card" style="margin-top: 1em';">
                                     <label class="item item-input">
-                                        <input onkeyup="validEmail()" id="emailField" placeholder="What is your email?" autocapitalize="off" name="emailField" type="email">
+                                        <input onkeyup="validEmail(); validateEmail();" id="emailField" placeholder="What is your email?" autocapitalize="off" name="emailField" type="email">
                                          <i class="ion-ios7-checkmark" style="color : green; font-size: 23px; margin-right: 0.4em; display: none;" id="emailSucc"></i>
                                         <i class="ion-ios7-close" style="color : firebrick; font-size: 23px; margin-right: 0.4em; display: none;" id="emailFail"></i>
                                     </label>
                                 </div>
-                                <div class="card " style="margin-top: 1em;">
-                                    <label class="item item-input">
-                                        <input onkeyup="validatePass()" placeholder="What is your password?" id="passwordField" autocapitalize="off" name="passwordField" type="password" value="">
-                                        <i class="ion-ios7-checkmark" style="color : green; font-size: 23px; margin-right: 0.4em; display: none;" id="passSucc"></i>
-                                        <i class="ion-ios7-close" style="color : firebrick; font-size: 23px; margin-right: 0.4em; display: none;" id="passFail"></i>
-                                    </label>
-                                </div>
-                                <div class="card " style="margin-top: 1em;">
-                                    <label class="item item-input">
-                                        <input onkeyup="validatePassCon()" placeholder="Confirm you password" id="confirm-passwordField" autocapitalize="off" name="confirm-passwordField" type="password" value="">
-                                        <i class="ion-ios7-checkmark" style="color : green; font-size: 23px; margin-right: 0.4em; display: none;" id="cpassSucc"></i>
-                                        <i class="ion-ios7-close" style="color : firebrick; font-size: 23px; margin-right: 0.4em; display: none;" id="cpassFail"></i>
-                                    </label>
-                                </div>
+                                <form action="checkPassword" method="POST" id="checkPassword" name="checkPassword">
+                                    <div class="card " style="margin-top: 1em;">
+                                        <label class="item item-input">
+                                            <input onkeyup="validatePass()" placeholder="What is your password?" id="passwordField" autocapitalize="off" name="passwordField" type="password" value="">
+                                            <i class="ion-ios7-checkmark" style="color : green; font-size: 23px; margin-right: 0.4em; display: none;" id="passSucc"></i>
+                                            <i class="ion-ios7-close" style="color : firebrick; font-size: 23px; margin-right: 0.4em; display: none;" id="passFail"></i>
+                                        </label>
+                                    </div>
+                                    <div class="card " style="margin-top: 1em;">
+                                        <label class="item item-input">
+                                            <input onkeyup="validatePassCon()" placeholder="Confirm you password" id="confirm-passwordField" autocapitalize="off" name="confirm-passwordField" type="password" value="">
+                                            <i class="ion-ios7-checkmark" style="color : green; font-size: 23px; margin-right: 0.4em; display: none;" id="cpassSucc"></i>
+                                            <i class="ion-ios7-close" style="color : firebrick; font-size: 23px; margin-right: 0.4em; display: none;" id="cpassFail"></i>
+                                        </label>
+                                    </div>
+                                </form>
                             </form>
 
                             <div id="errorMsg" class="list list-inset" style="background-color:#00b9f2">
